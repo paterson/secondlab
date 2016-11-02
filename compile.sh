@@ -1,1 +1,1 @@
-go install github.com/paterson/secondlab
+go get github.com/paterson/secondlab
