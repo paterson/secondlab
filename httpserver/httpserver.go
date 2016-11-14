@@ -2,7 +2,6 @@ package httpserver
 
 import (
 	"fmt"
-	"io/ioutil"
 	"net"
 	"os"
 )
@@ -18,8 +17,9 @@ func Listen() (net.Listener, error) {
 }
 
 func Read(conn net.Conn) (string, error) {
-	result, error := ioutil.ReadAll(conn)
-	return string(result), error
+	buffer := make([]byte, 1024)
+	readLength, error := conn.Read(buffer)
+	return string(buffer[:readLength]), error
 }
 
 func Port() string {

@@ -10,6 +10,8 @@ import (
 
 const (
 	NUMBER_OF_WORKERS = 3
+	HELO_TEXT         = "HELO text"
+	KILL_SERVICE      = "KILL_SERVICE"
 )
 
 func main() {
@@ -34,9 +36,9 @@ func handleRequest(connection net.Conn) {
 	checkError(err)
 
 	fmt.Println("Request Received:", message)
-	if message == "HELO text" {
+	if message == HELO_TEXT {
 		respondToHello(connection)
-	} else if message == "KILL_SERVICE" {
+	} else if message == KILL_SERVICE {
 		killService(connection)
 	} else {
 		doNothing(connection)
