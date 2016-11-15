@@ -37,6 +37,7 @@ func handleRequest(connection net.Conn) {
 
 	fmt.Println("Request Received:", message)
 	if message.hasPrefix(HELO_TEXT) {
+		fmt.Println("Here")
 		respondToHello(connection)
 	} else if message == KILL_SERVICE {
 		killService(connection)
