@@ -38,7 +38,6 @@ func handleRequest(connection net.Conn) {
 
 	fmt.Println("Request Received:", message)
 	if strings.HasPrefix(message, HELO_TEXT) {
-		fmt.Println("Here")
 		respondToHello(connection)
 	} else if message == KILL_SERVICE {
 		killService(connection)
@@ -53,7 +52,7 @@ func killService(connection net.Conn) {
 }
 
 func respondToHello(connection net.Conn) {
-	response := fmt.Sprintf("HELO text\nIP:%s\nPort:%s\nStudentID:12305503\n", httpserver.IPAddress(), httpserver.Port())
+	response := fmt.Sprintf("HELO text\nIP:10.62.0.92\nPort:%s\nStudentID:12305503\n", httpserver.Port())
 	connection.Write([]byte(response))
 	connection.Close()
 }
