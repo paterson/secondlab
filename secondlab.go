@@ -53,7 +53,7 @@ func killService(connection net.Conn) {
 }
 
 func respondToHello(connection net.Conn, message string) {
-	response := fmt.Sprintf("HELO %s\nIP:10.62.0.92\nPort:%s\nStudentID:12305503\n", message, httpserver.Port())
+	response := fmt.Sprintf("HELO %sIP:10.62.0.92\nPort:%s\nStudentID:12305503\n", message, httpserver.Port())
 	connection.Write([]byte(response))
 	connection.Close()
 }
