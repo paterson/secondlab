@@ -38,7 +38,7 @@ func handleRequest(connection net.Conn) {
 
 	fmt.Println("Request Received:", message)
 	if strings.HasPrefix(message, HELO_TEXT) {
-		let suffix = message[len(HELO_TEXT):len(message)]
+		var suffix = message[len(HELO_TEXT):len(message)]
 		respondToHello(connection, suffix)
 	} else if message == KILL_SERVICE {
 		killService(connection)
