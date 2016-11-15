@@ -12,7 +12,7 @@ import (
 const (
 	NUMBER_OF_WORKERS = 3
 	HELO_TEXT         = "HELO text"
-	KILL_SERVICE      = "KILL_SERVICE"
+	KILL_SERVICE      = "KILL_SERVICE\n"
 )
 
 func main() {
