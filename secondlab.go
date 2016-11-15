@@ -11,7 +11,7 @@ import (
 
 const (
 	NUMBER_OF_WORKERS = 3
-	HELO_TEXT         = "HELO text"
+	HELO_TEXT         = "HELO "
 	KILL_SERVICE      = "KILL_SERVICE\n"
 )
 
@@ -38,7 +38,8 @@ func handleRequest(connection net.Conn) {
 
 	fmt.Println("Request Received:", message)
 	if strings.HasPrefix(message, HELO_TEXT) {
-		respondToHello(connection)
+		suffix = message[len(HELO_TEXT):len(message)]
+		respondToHello(connection, suffix)
 	} else if message == KILL_SERVICE {
 		killService(connection)
 	} else {
@@ -51,8 +52,8 @@ func killService(connection net.Conn) {
 	os.Exit(0)
 }
 
-func respondToHello(connection net.Conn) {
-	response := fmt.Sprintf("HELO text\nIP:10.62.0.92\nPort:%s\nStudentID:12305503\n", httpserver.Port())
+func respondToHello(connection net.Conn, message string) {
+	response := fmt.Sprintf("HELO %s\nIP:10.62.0.92\nPort:%s\nStudentID:12305503\n", message, httpserver.Port())
 	connection.Write([]byte(response))
 	connection.Close()
 }
