@@ -23,14 +23,14 @@ func Read(conn net.Conn) (string, error) {
 }
 
 func Port() string {
-	if os.Args > 2 {
+	if len(os.Args) > 2 {
 		return os.Args[2]
 	}
 	return os.Args[1]
 }
 
 func IPAddress() string {
-	if os.Args > 2 {
+	if len(os.Args) > 2 {
 		return os.Args[1]	
 	}
 	return "0.0.0.0"
