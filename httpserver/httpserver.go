@@ -7,7 +7,7 @@ import (
 )
 
 func Listen() (net.Listener, error) {
-	listener, err := net.Listen("tcp", "0.0.0.0:"+Port()) // Listen for incoming connection
+	listener, err := net.Listen("tcp", IPAddress() + ":" + Port()) // Listen for incoming connection
 	if err != nil {
 		return nil, err
 	}
@@ -23,16 +23,15 @@ func Read(conn net.Conn) (string, error) {
 }
 
 func Port() string {
+	if os.Args > 2 {
+		return os.Args[2]
+	}
 	return os.Args[1]
 }
 
 func IPAddress() string {
-	host, _ := os.Hostname()
-	addrs, _ := net.LookupIP(host)
-	for _, addr := range addrs {
-		if ipv4 := addr.To4(); ipv4 != nil {
-			return string(ipv4)
-		}
+	if os.Args > 2 {
+		return os.Args[1]	
 	}
 	return "0.0.0.0"
 }
