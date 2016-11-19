@@ -12,7 +12,6 @@ func Listen() (net.Listener, error) {
 		return nil, err
 	}
 	fmt.Println("Listening on " + IPAddress() + ":" + Port())
-
 	return listener, nil
 }
 
@@ -30,8 +29,9 @@ func Port() string {
 }
 
 func IPAddress() string {
+	fmt.Println(os.Args)
 	if len(os.Args) > 2 {
-		return os.Args[1]	
+		return os.Args[1]
 	}
-	return "0.0.0.0"
+	return "10.62.0.92"
 }
