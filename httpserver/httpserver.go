@@ -29,7 +29,6 @@ func Port() string {
 }
 
 func IPAddress() string {
-	fmt.Println(os.Args)
 	if len(os.Args) > 2 {
 		return os.Args[1]
 	}
